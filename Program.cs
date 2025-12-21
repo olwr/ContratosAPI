@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-// using ContratosAPI.Data;
+using ContratosAPI.Data;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
