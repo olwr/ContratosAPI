@@ -1,0 +1,6 @@
+@ContratosAPI_HostAddress = http://localhost:5016
+
+GET {{ContratosAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
