@@ -25,7 +25,8 @@ namespace ContratosAPI.Models
         public DateTime DataNascimento { get; set; }
         
         [Required(ErrorMessage = "CPF é obrigatório")]
-        [StringLength(11, MinimumLength = 11, ErrorMessage = "CPF deve ter 11 caracteres")]
+        [RegularExpression(@"^\d{11}$", ErrorMessage = "CPF deve conter apenas números")]
+        [StringLength(11, MinimumLength = 11, ErrorMessage = "CPF deve ter 11 dígitos")]
         public string CPF { get; set; }
         
         [Required(ErrorMessage = "Cidade e Estado são obrigatórios")]
@@ -35,7 +36,7 @@ namespace ContratosAPI.Models
         public Contato Contato { get; set; }
         
         [Required(ErrorMessage = "Função é obrigatória")]
-        [StringLength(150, ErrorMessage = "A função deve ter no máximo 200 caracteres")]
+        [StringLength(150, ErrorMessage = "A função deve ter no máximo 150 caracteres")]
         public string Funcao { get; set; }
     }
 };

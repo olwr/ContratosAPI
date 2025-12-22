@@ -20,6 +20,7 @@ namespace ContratosAPI.Models
     }
     
     [Required(ErrorMessage = "Telefone é obrigatório")]
+    [RegularExpression("^\\+55(1[1-9]|2[1-8]|3[1-5]|4[1-9]|5[1-5]|6[1-9]|7[1-9]|8[1-9]|9[1-9])9\\d{8}$")]
     [StringLength(14, MinimumLength = 14, ErrorMessage = "O número deve estar no formato: +5511912345678")]
     public string Telefone { get; set; }
     

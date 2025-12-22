@@ -22,7 +22,8 @@ namespace ContratosAPI.Models
         public string NomeFantasia { get; set; }
 
         [Required(ErrorMessage = "CNPJ é obrigatório")]
-        [StringLength(14, MinimumLength = 14, ErrorMessage = "O CNPJ deve ter 14 caracteres")]
+        [RegularExpression(@"^\d{14}$", ErrorMessage = "CNPJ deve conter apenas números")]
+        [StringLength(14, MinimumLength = 14, ErrorMessage = "O CNPJ deve ter 14 dígitos")]
         public string CNPJ { get; set; }
 
         [Required(ErrorMessage = "Logradouro é obrigatório")]

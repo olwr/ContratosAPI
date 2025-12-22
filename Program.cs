@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 using ContratosAPI.Data;
+using ContratosAPI.Mappings;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +9,9 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
+// Configura AutoMapper
+builder.Services.AddAutoMapper(typeof (AutoMapperProfile));
 
 // Configura os Controlllers
 builder.Services.AddControllers();

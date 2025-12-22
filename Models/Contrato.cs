@@ -30,6 +30,7 @@ namespace ContratosAPI.Models
         public int TipoContraenteId { get; set; }
         
         [ForeignKey("TipoContraenteId")]
+        [Range(1, 2, ErrorMessage = "Tipo de contraente inválido (1=Empresa, 2=Funcionário)")]
         public TipoContraente TipoContraente { get; set; }
         
         [Required(ErrorMessage = "Tipo do contrato é obrigatório")]
