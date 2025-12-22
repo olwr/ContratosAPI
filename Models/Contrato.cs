@@ -4,28 +4,6 @@ using ContratosAPI.Attributes;
 
 namespace ContratosAPI.Models
 {
-    // ENUM usado para manter o padrão e validação dos tipos e status de contratos
-    public enum TipoContrato
-    {
-        [Display(Name = "Selecione o tipo do contrato")]
-        NaoSelecionado = 0,
-        CLT,
-        MEI,
-        TEMPORARIO,
-        AUTONOMO,
-        ESTAGIO,
-        APRENDIZ // Menor e Jovem
-    }
-
-    public enum StatusContrato
-    {
-        [Display(Name = "Selecione o status do contrato")]
-        NaoSelecionado = 0,
-        ATIVO,
-        ENCERRADO,
-        RESCINDIDO
-    }
-
     [ContraenteValidacao]
     public class Contrato
     {
@@ -43,20 +21,31 @@ namespace ContratosAPI.Models
         public Empresa Contratante { get; set; }
         
         // Contraente (Empresa OU Funcionário)
-        public int? ContraenteEmpresaId { get; set; }
-        public int? ContraenteFuncionarioId { get; set; }
+        [Required(ErrorMessage = "Contraente é obrigatório")]
+        public int ContraenteId { get; set; }
         
-        [ForeignKey("ContraenteEmpresaId")]
-        public Empresa? ContraenteEmpresa { get; set; }
-
-        [ForeignKey("ContraenteFuncionarioId")]
-        public Funcionario? ContraenteFuncionario { get; set; }
-        // **
+        // FK para TipoContraente (tabela de referência)
+        [Required(ErrorMessage = "Tipo de contraente é obrigatório")]
+        [Range(1, int.MaxValue, ErrorMessage = "Selecione um tipo de contraente válido")]
+        public int TipoContraenteId { get; set; }
+        
+        [ForeignKey("TipoContraenteId")]
+        public TipoContraente TipoContraente { get; set; }
         
         [Required(ErrorMessage = "Tipo do contrato é obrigatório")]
         [Range(1, int.MaxValue, ErrorMessage = "Selecione um tipo válido")]
-        [EnumDataType(typeof(TipoContrato))]
+        public int TipoContratoId { get; set; }
+        
+        [ForeignKey("TipoContratoId")]
         public TipoContrato TipoContrato { get; set; }
+        
+        [Required(ErrorMessage = "Status do contrato é obrigatório")]
+        [Range(1, int.MaxValue, ErrorMessage = "Selecione um status válido")]
+        public int StatusContratoId { get; set; }
+        
+        [ForeignKey("StatusContratoId")]
+        public StatusContrato StatusContrato { get; set; }
+        // **
         
         [Required(ErrorMessage = "Precificação é obrigatória")]
         [Column(TypeName = "decimal(18,2)")]
@@ -69,11 +58,6 @@ namespace ContratosAPI.Models
         [StringLength(500, ErrorMessage = "Condições de pagamento devem ter no máximo 500 caracteres")]
         public string CondicoesPagamento { get; set; }
         
-        [Required(ErrorMessage = "Status do contrato é obrigatório")]
-        [Range(1, int.MaxValue, ErrorMessage = "Selecione um status válido")]
-        [EnumDataType(typeof(StatusContrato))]
-        public StatusContrato StatusContrato { get; set; }
-        
         [Required(ErrorMessage = "Data de emissão é obrigatória")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
@@ -82,5 +66,8 @@ namespace ContratosAPI.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? Validade {get; set; }
+        
+        [StringLength(1000, ErrorMessage = "Descrição deve ter no máximo 1000 caracteres")]
+        public string? Descricao { get; set; }
     }
 }

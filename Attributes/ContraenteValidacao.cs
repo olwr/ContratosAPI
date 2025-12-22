@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using ContratosAPI.Models;
 
 // Validação costumizada de contraentes (Empresa ou Funcionário) válidos
 namespace ContratosAPI.Attributes
@@ -7,20 +8,31 @@ namespace ContratosAPI.Attributes
     {
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
-           object contrato = validationContext.ObjectInstance;
-           int? empresaId = contrato.GetType().GetProperty("ContraenteEmpresaId")?.GetValue(contrato) as int?;
-           int? funcionarioId = contrato.GetType().GetProperty("ContraenteFuncionarioId")?.GetValue(contrato) as int?;
+            if (validationContext.ObjectInstance is not Contrato contrato)
+               return ValidationResult.Success;
 
-           bool temEmpresa = empresaId.HasValue;
-           bool temFuncionario = funcionarioId.HasValue;
+            if (contrato.ContraenteId <= 0)
+            {
+                return new ValidationResult(
+                    "É necessário informar o ID do contraente",
+                    new[] { nameof(Contrato.ContraenteId) });
+            }
 
-           if (!temFuncionario && !temEmpresa)
-               return new ValidationResult("É necessário informar um contraente (Empresa ou Funcionário)");
-
-           if (temEmpresa && temFuncionario)
-               return new ValidationResult("Informe apenas um tipo de contraente");
+            if (contrato.TipoContraenteId <= 0)
+            {
+                return new ValidationResult(
+                    "É necessário informar o tipo de contraente",
+                    new[] { nameof(Contrato.TipoContraenteId) });
+            }
            
-           return ValidationResult.Success;
+            if (contrato.TipoContraenteId != 1 && contrato.TipoContraenteId != 2)
+            {
+                return new ValidationResult(
+                    "Tipo de contraente inválido. Use 1 para Empresa ou 2 para Funcionário",
+                    new[] { nameof(Contrato.TipoContraenteId) });
+            }
+           
+            return ValidationResult.Success;
         }
     }
 }

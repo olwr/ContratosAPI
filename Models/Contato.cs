@@ -1,16 +1,18 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
-// Classe Abstrata para a reutilização de código entre Empresa e Funcionário
+// Classe para a reutilização de código entre Empresa e Funcionário
 namespace ContratosAPI.Models
 {
-public abstract class Contato
+    [Owned]
+    public class Contato
 {
     private string? _email;
 
     [Required(ErrorMessage = "E-mail é obrigatório")]
     [EmailAddress(ErrorMessage = "E-mail inválido")]
     [StringLength(254)]
-    public string? Email
+    public string Email
     {
         // Normalização para minúsculas
         get => _email;

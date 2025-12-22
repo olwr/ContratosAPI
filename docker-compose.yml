@@ -6,11 +6,12 @@ services:
     container_name: contratos_api
     environment:
       MYSQL_DATABASE: contratos_db
-      MYSQL_ROOT_PASSWORD: root@senha
-      MYSQL_USER: root
-      MYSQL_PASSWORD: api@senha
-      ports:
-        "3306:3306"
-      volumes:
-        mariadb_data:/var/lib/mysql
-      restart: unless-stopped
+      MYSQL_ROOT_PASSWORD: api@senha
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    restart: unless-stopped
+
+volumes:
+  mariadb_data:

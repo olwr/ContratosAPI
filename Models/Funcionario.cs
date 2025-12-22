@@ -6,8 +6,6 @@ namespace ContratosAPI.Models
 {
     public class Funcionario
     {
-        private string _email;
-        
         // Todos os atributos possuem validação de obrigatoriedade e valor
 
         // Chave primária
@@ -37,9 +35,7 @@ namespace ContratosAPI.Models
         public Contato Contato { get; set; }
         
         [Required(ErrorMessage = "Função é obrigatória")]
-        [StringLength(200, ErrorMessage = "a função deve ter no máximo 200 caracteres")]
-        
-        // Um funcionário pode ter um ou vários contratos (1:N)
-        public ICollection<Contrato>?  Contratos { get; set; }
+        [StringLength(150, ErrorMessage = "A função deve ter no máximo 200 caracteres")]
+        public string Funcao { get; set; }
     }
 };

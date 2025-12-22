@@ -48,6 +48,5 @@ namespace ContratosAPI.Models
         
         // Uma empresa pode ter um ou vários contratos (1:N)
         public ICollection<Contrato>?  ContratosComoContratante { get; set; }
-        public ICollection<Contrato>?  ContratosComoContraente { get; set; }
     }
 };
