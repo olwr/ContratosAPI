@@ -7,6 +7,8 @@ C:\Users\Dell\RiderProjects\ContratosAPI\bin\Debug\net9.0\ContratosAPI.deps.json
 C:\Users\Dell\RiderProjects\ContratosAPI\bin\Debug\net9.0\ContratosAPI.runtimeconfig.json
 C:\Users\Dell\RiderProjects\ContratosAPI\bin\Debug\net9.0\ContratosAPI.dll
 C:\Users\Dell\RiderProjects\ContratosAPI\bin\Debug\net9.0\ContratosAPI.pdb
+C:\Users\Dell\RiderProjects\ContratosAPI\bin\Debug\net9.0\ContratosAPI.xml
+C:\Users\Dell\RiderProjects\ContratosAPI\bin\Debug\net9.0\AutoMapper.dll
 C:\Users\Dell\RiderProjects\ContratosAPI\bin\Debug\net9.0\Humanizer.dll
 C:\Users\Dell\RiderProjects\ContratosAPI\bin\Debug\net9.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\Dell\RiderProjects\ContratosAPI\bin\Debug\net9.0\Microsoft.Bcl.AsyncInterfaces.dll
@@ -129,13 +131,7 @@ C:\Users\Dell\RiderProjects\ContratosAPI\obj\Debug\net9.0\staticwebassets.build.
 C:\Users\Dell\RiderProjects\ContratosAPI\obj\Debug\net9.0\Contrato.777C3D3C.Up2Date
 C:\Users\Dell\RiderProjects\ContratosAPI\obj\Debug\net9.0\ContratosAPI.dll
 C:\Users\Dell\RiderProjects\ContratosAPI\obj\Debug\net9.0\refint\ContratosAPI.dll
+C:\Users\Dell\RiderProjects\ContratosAPI\obj\Debug\net9.0\ContratosAPI.xml
 C:\Users\Dell\RiderProjects\ContratosAPI\obj\Debug\net9.0\ContratosAPI.pdb
 C:\Users\Dell\RiderProjects\ContratosAPI\obj\Debug\net9.0\ContratosAPI.genruntimeconfig.cache
 C:\Users\Dell\RiderProjects\ContratosAPI\obj\Debug\net9.0\ref\ContratosAPI.dll
-C:\Users\Dell\RiderProjects\ContratosAPI\bin\Debug\net9.0\AutoMapper.dll
-C:\Users\Dell\RiderProjects\ContratosAPI\bin\Debug\net9.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
-C:\Users\Dell\RiderProjects\ContratosAPI\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
-C:\Users\Dell\RiderProjects\ContratosAPI\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
-C:\Users\Dell\RiderProjects\ContratosAPI\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
-C:\Users\Dell\RiderProjects\ContratosAPI\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
-C:\Users\Dell\RiderProjects\ContratosAPI\bin\Debug\net9.0\System.Diagnostics.DiagnosticSource.dll

@@ -1,0 +1,304 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ContratosAPI</name>
+    </assembly>
+    <members>
+        <member name="T:ContratosAPI.Controllers.ContratosController">
+            <summary>
+            Controller para gerenciamento de contratos
+            </summary>
+        </member>
+        <member name="M:ContratosAPI.Controllers.ContratosController.#ctor(ContratosAPI.Data.ApplicationDbContext,AutoMapper.IMapper)">
+            <summary>
+            Controller para gerenciamento de contratos
+            </summary>
+        </member>
+        <member name="M:ContratosAPI.Controllers.ContratosController.GetContratos(System.Int32,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Retorna todos os contratos
+            </summary>
+        </member>
+        <member name="M:ContratosAPI.Controllers.ContratosController.GetContrato(System.Int32)">
+            <summary>
+            Retorna um contrato específico pelo ID
+            </summary>
+        </member>
+        <member name="M:ContratosAPI.Controllers.ContratosController.PostContrato(ContratosAPI.DTOs.Contrato.ContratoCreateDto)">
+            <summary>
+            Cria um novo contrato
+            </summary>
+        </member>
+        <member name="M:ContratosAPI.Controllers.ContratosController.PutContrato(System.Int32,ContratosAPI.DTOs.Contrato.ContratoPutDto)">
+            <summary>
+            Atualiza um contrato existente
+            </summary>
+        </member>
+        <member name="M:ContratosAPI.Controllers.ContratosController.DeleteContrato(System.Int32)">
+            <summary>
+            Remove um contrato
+            </summary>
+        </member>
+        <member name="T:ContratosAPI.Controllers.EmpresasController">
+            <summary>
+            Controller para gerenciamento de empresas
+            </summary>
+        </member>
+        <member name="M:ContratosAPI.Controllers.EmpresasController.#ctor(ContratosAPI.Data.ApplicationDbContext,AutoMapper.IMapper)">
+            <summary>
+            Controller para gerenciamento de empresas
+            </summary>
+        </member>
+        <member name="M:ContratosAPI.Controllers.EmpresasController.GetEmpresas(System.Int32,System.Int32)">
+            <summary>
+            Retorna todas as empresas
+            </summary>
+            <param name="pageNumber">Número da página (padrão: 1)</param>
+            <param name="pageSize">Tamanho da página (padrão: 10)</param>
+            <returns>Lista paginada de empresas</returns>
+            <response code="200">Retorna a lista de empresas</response>
+        </member>
+        <member name="M:ContratosAPI.Controllers.EmpresasController.GetEmpresa(System.Int32)">
+            <summary>
+            Retorna uma empresa específica pelo ID
+            </summary>
+            <param name="id">ID da empresa</param>/// <returns>Dados completos da empresa</returns>
+            <response code="200">Retorna a empresa</response>
+            <response code="404">Empresa não encontrada</response>
+        </member>
+        <member name="M:ContratosAPI.Controllers.EmpresasController.GetEmpresaByCnpj(System.String)">
+            <summary>
+            Busca empresa por CNPJ
+            </summary>
+            <param name="cnpj">CNPJ da empresa (14 dígitos)</param>
+            <returns>Dados da empresa</returns>
+            <response code="200">Retorna a empresa</response>
+            <response code="404">Empresa não encontrada</response>
+        </member>
+        <member name="M:ContratosAPI.Controllers.EmpresasController.PostEmpresa(ContratosAPI.DTOs.Empresa.EmpresaCreateDto)">
+            <summary>
+            Cria uma nova empresa
+            </summary>
+            <param name="empresaDto">Dados da nova empresa</param>
+            <returns>Empresa criada</returns>
+            <response code="201">Empresa criada com sucesso</response>
+            <response code="400">Dados inválidos</response>
+            <response code="409">CNPJ já cadastrado</response>[HttpPost]
+        </member>
+        <member name="M:ContratosAPI.Controllers.EmpresasController.PutEmpresa(System.Int32,ContratosAPI.DTOs.Empresa.EmpresaPutDto)">
+            <summary>
+            Atualiza uma empresa existente
+            </summary>
+            <param name="id">ID da empresa</param>
+            <param name="empresaDto">Dados atualizados</param>
+            <returns>No content</returns>
+            <response code="204">Empresa atualizada com sucesso</response>
+            <response code="400">Dados inválidos</response>
+            <response code="404">Empresa não encontrada</response>
+        </member>
+        <member name="M:ContratosAPI.Controllers.EmpresasController.DeleteEmpresa(System.Int32)">
+            <summary>
+            Remove uma empresa
+            </summary>
+            <param name="id">ID da empresa</param>
+            <returns>No content</returns>
+            <response code="204">Empresa removida com sucesso</response>
+            <response code="404">Empresa não encontrada</response>
+            <response code="409">Empresa possui contratos vinculados</response>
+        </member>
+        <member name="T:ContratosAPI.Controllers.EstadosController">
+            <summary>
+            Controller para estados brasileiros
+            </summary>
+        </member>
+        <member name="M:ContratosAPI.Controllers.EstadosController.#ctor(ContratosAPI.Data.ApplicationDbContext)">
+            <summary>
+            Controller para estados brasileiros
+            </summary>
+        </member>
+        <member name="M:ContratosAPI.Controllers.EstadosController.GetEstados">
+            <summary>
+            Retorna todos os estados
+            </summary>
+        </member>
+        <member name="M:ContratosAPI.Controllers.EstadosController.GetEstado(System.Int32)">
+            <summary>
+            Retorna um estado pelo ID
+            </summary>
+        </member>
+        <member name="T:ContratosAPI.Controllers.FuncionariosController">
+            <summary>
+            Controller para gerenciamento de funcionários
+            </summary>
+        </member>
+        <member name="M:ContratosAPI.Controllers.FuncionariosController.#ctor(ContratosAPI.Data.ApplicationDbContext,AutoMapper.IMapper)">
+            <summary>
+            Controller para gerenciamento de funcionários
+            </summary>
+        </member>
+        <member name="M:ContratosAPI.Controllers.FuncionariosController.GetFuncionarios(System.Int32,System.Int32)">
+            <summary>
+            Retorna todos os funcionários
+            </summary>
+        </member>
+        <member name="M:ContratosAPI.Controllers.FuncionariosController.GetFuncionario(System.Int32)">
+            <summary>
+            Retorna um funcionário específico pelo ID
+            </summary>
+        </member>
+        <member name="M:ContratosAPI.Controllers.FuncionariosController.GetFuncionarioByCpf(System.String)">
+            <summary>
+            Busca funcionário por CPF
+            </summary>
+        </member>
+        <member name="M:ContratosAPI.Controllers.FuncionariosController.PostFuncionario(ContratosAPI.DTOs.Funcionario.FuncionarioCreateDto)">
+            <summary>
+            Cria um novo funcionário
+            </summary>
+        </member>
+        <member name="M:ContratosAPI.Controllers.FuncionariosController.PutFuncionario(System.Int32,ContratosAPI.DTOs.Funcionario.FuncionarioPutDto)">
+            <summary>
+            Atualiza um funcionário existente
+            </summary>
+        </member>
+        <member name="M:ContratosAPI.Controllers.FuncionariosController.DeleteFuncionario(System.Int32)">
+            <summary>
+            Remove um funcionário
+            </summary>
+        </member>
+        <member name="T:ContratosAPI.Controllers.StatusContratoController">
+            <summary>
+            Controller para os status de contrato
+            </summary>
+        </member>
+        <member name="M:ContratosAPI.Controllers.StatusContratoController.#ctor(ContratosAPI.Data.ApplicationDbContext)">
+            <summary>
+            Controller para os status de contrato
+            </summary>
+        </member>
+        <member name="M:ContratosAPI.Controllers.StatusContratoController.GetStatusContratos">
+            <summary>
+            Retorna todos os status de contrato
+            </summary>
+        </member>
+        <member name="M:ContratosAPI.Controllers.StatusContratoController.GetTipoContraente(System.Int32)">
+            <summary>
+            Retorna um status de contrato por ID
+            </summary>
+        </member>
+        <member name="T:ContratosAPI.Controllers.TipoContraenteController">
+            <summary>
+            Controller para os tipos de contraente
+            </summary>
+        </member>
+        <member name="M:ContratosAPI.Controllers.TipoContraenteController.#ctor(ContratosAPI.Data.ApplicationDbContext)">
+            <summary>
+            Controller para os tipos de contraente
+            </summary>
+        </member>
+        <member name="M:ContratosAPI.Controllers.TipoContraenteController.GetTipoContraentes">
+            <summary>
+            Retorna todos os tipos de contraente
+            </summary>
+        </member>
+        <member name="M:ContratosAPI.Controllers.TipoContraenteController.GetTipoContraente(System.Int32)">
+            <summary>
+            Retorna um tipo de contraente pelo ID
+            </summary>
+        </member>
+        <member name="T:ContratosAPI.Controllers.TipoContratoController">
+            <summary>
+            Controller para os tipos de contrato
+            </summary>
+        </member>
+        <member name="M:ContratosAPI.Controllers.TipoContratoController.#ctor(ContratosAPI.Data.ApplicationDbContext)">
+            <summary>
+            Controller para os tipos de contrato
+            </summary>
+        </member>
+        <member name="M:ContratosAPI.Controllers.TipoContratoController.GetTipoContratos">
+            <summary>
+            Retorna todos os tipos de contrato
+            </summary>
+        </member>
+        <member name="M:ContratosAPI.Controllers.TipoContratoController.GetTipoContrato(System.Int32)">
+            <summary>
+            Retorna um tipo de contrato pelo ID
+            </summary>
+        </member>
+        <member name="T:ContratosAPI.DTOs.Contrato.ContratoCreateDto">
+            DTO para criar um novo contrato
+        </member>
+        <member name="T:ContratosAPI.DTOs.Contrato.ContratoListDto">
+            DTO para listar contratos (versão resumida)
+        </member>
+        <member name="T:ContratosAPI.DTOs.Contrato.ContratoPatchDto">
+            DTO para atualizar um contrato existente
+        </member>
+        <member name="T:ContratosAPI.DTOs.Contrato.ContratoPutDto">
+            DTO para atualizar um contrato existente
+        </member>
+        <member name="T:ContratosAPI.DTOs.Contrato.ContratoResponseDto">
+            DTO para retornar dados completos de um contrato
+        </member>
+        <member name="T:ContratosAPI.DTOs.Empresa.EmpresaListDto">
+            DTO para listar empresas (versão resumida)
+        </member>
+        <member name="T:ContratosAPI.DTOs.Empresa.EmpresaResponseDto">
+            DTO para retornar dados completos de uma empresa
+        </member>
+        <member name="T:ContratosAPI.DTOs.Funcionario.FuncionarioCreateDto">
+            DTO para criar um novo funcionário
+        </member>
+        <member name="T:ContratosAPI.DTOs.Funcionario.FuncionarioListDto">
+            DTO para listar funcionários (versão resumida)
+        </member>
+        <member name="T:ContratosAPI.DTOs.Funcionario.FuncionarioPatchDto">
+            DTO para atualizar um funcionário existente
+        </member>
+        <member name="T:ContratosAPI.DTOs.Funcionario.FuncionarioPutDto">
+            DTO para atualizar um funcionário existente
+        </member>
+        <member name="T:ContratosAPI.DTOs.Funcionario.FuncionarioResponseDto">
+            <summary>
+            DTO para retornar dados completos de um funcionário
+            </summary>
+        </member>
+        <member name="T:ContratosAPI.Migrations.InitialCreate">
+            <inheritdoc />
+        </member>
+        <member name="M:ContratosAPI.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ContratosAPI.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ContratosAPI.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:ContratosAPI.Migrations.Update">
+            <inheritdoc />
+        </member>
+        <member name="M:ContratosAPI.Migrations.Update.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ContratosAPI.Migrations.Update.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ContratosAPI.Migrations.Update.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:ContratosAPI.Migrations.NewUpdate">
+            <inheritdoc />
+        </member>
+        <member name="M:ContratosAPI.Migrations.NewUpdate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ContratosAPI.Migrations.NewUpdate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ContratosAPI.Migrations.NewUpdate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

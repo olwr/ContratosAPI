@@ -17,6 +17,16 @@ namespace ContratosAPI.Mappings
             CreateMap<TipoContrato, TipoContratoDto>();
             CreateMap<StatusContrato, StatusContratoDto>();
             CreateMap<TipoContraente, TipoContraenteDto>();
+            
+            // ========== MAPEAMENTOS DE TIPOS ANINHADOS ==========
+            
+            // CidadeEstadoDto <-> CidadeEstado
+            CreateMap<CidadeEstadoDto, CidadeEstado>();
+            CreateMap<CidadeEstado, CidadeEstadoDto>();
+            
+            // ContatoDto <-> Contato
+            CreateMap<ContatoDto, Contato>();
+            CreateMap<Contato, ContatoDto>();
 
             // ========== EMPRESA ==========
             // Empresa → EmpresaResponseDto

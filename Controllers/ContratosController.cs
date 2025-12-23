@@ -125,6 +125,7 @@ namespace ContratosAPI.Controllers
             
             // Validar se contratante existe
             bool contratanteExiste = await context.Empresas
+                .AsNoTracking()
                 .AnyAsync(e => e.Id == contratoDto.ContratanteId);
             if (!contratanteExiste)
             {
@@ -139,7 +140,9 @@ namespace ContratosAPI.Controllers
             if (contratoDto.TipoContraenteId == 1) // Empresa
             {
                 bool empresaExiste = await context.Empresas
+                    .AsNoTracking()
                     .AnyAsync(e => e.Id == contratoDto.ContraenteId);
+                
                 if (!empresaExiste)
                 {
                     return NotFound(new
@@ -153,7 +156,9 @@ namespace ContratosAPI.Controllers
             else if (contratoDto.TipoContraenteId == 2) // Funcionário
             {
                 bool funcionarioExiste = await context.Funcionarios
+                    .AsNoTracking()
                     .AnyAsync(f => f.Id == contratoDto.ContraenteId);
+                
                 if (!funcionarioExiste)
                 {
                     return NotFound(new
@@ -277,7 +282,7 @@ namespace ContratosAPI.Controllers
 
         private async Task<bool> ContratoExists(int id)
         {
-            return await context.Contratos.AnyAsync(c => c.Id == id);
+            return await context.Contratos.AsNoTracking().AnyAsync(c => c.Id == id);
         }
     }
 }

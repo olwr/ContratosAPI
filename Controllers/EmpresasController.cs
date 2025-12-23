@@ -130,6 +130,7 @@ namespace ContratosAPI.Controllers
         /// <response code="201">Empresa criada com sucesso</response>
         /// <response code="400">Dados inválidos</response>
         /// <response code="409">CNPJ já cadastrado</response>[HttpPost]
+        [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
@@ -144,6 +145,7 @@ namespace ContratosAPI.Controllers
 
             // Verificar se CNPJ já existe
             bool cnpjExiste = await context.Empresas
+                .AsNoTracking()
                 .AnyAsync(e => e.CNPJ == empresaDto.CNPJ);
             if (cnpjExiste)
             {
@@ -217,7 +219,9 @@ namespace ContratosAPI.Controllers
             if (empresa.CNPJ != empresaDto.CNPJ)
             {
                 bool cnpjExiste = await context.Empresas
+                    .AsNoTracking()
                     .AnyAsync(e => e.CNPJ == empresaDto.CNPJ && e.Id != id);
+                
                 if (cnpjExiste)
                 {
                     return Conflict(new
@@ -278,14 +282,19 @@ namespace ContratosAPI.Controllers
 
             // Verificar se existem contratos vinculados
             bool temContratos = await context.Contratos
+                .AsNoTracking()
                 .AnyAsync(c => c.ContratanteId == id ||
                                (c.TipoContraenteId == 1 && c.ContraenteId == id));
             if (temContratos)
             {
+                int totalContratos = await context.Contratos
+                    .AsNoTracking()
+                    .CountAsync(c => c.ContratanteId == id);
+                
                 return Conflict(new
                 {
                     error = "Empresa possui contratos",
-                    message = "Não é possível excluir uma empresa com contratos vinculados"
+                    message = $"Não é possível excluir. Existem {totalContratos} contrato(s) vinculado(s)."
                 });
             }
 
@@ -298,7 +307,7 @@ namespace ContratosAPI.Controllers
         // ========== MÉTODOS AUXILIARES ==========
         private async Task<bool> EmpresaExists(int id)
         {
-            return await context.Empresas.AnyAsync(e => e.Id == id);
+            return await context.Empresas.AsNoTracking().AnyAsync(e => e.Id == id);
         }
     }
 }

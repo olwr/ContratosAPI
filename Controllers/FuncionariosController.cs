@@ -124,7 +124,9 @@ namespace ContratosAPI.Controllers
 
             // Verificar se CPF já existe
             bool cpfExiste = await context.Funcionarios
+                .AsNoTracking()
                 .AnyAsync(f => f.CPF == funcionarioDto.CPF);
+            
             if (cpfExiste)
             {
                 return Conflict(new
@@ -180,7 +182,9 @@ namespace ContratosAPI.Controllers
             if (funcionario.CPF != funcionarioDto.CPF)
             {
                 bool cpfExiste = await context.Funcionarios
+                    .AsNoTracking()
                     .AnyAsync(f => f.CPF == funcionarioDto.CPF && f.Id != id);
+                
                 if (cpfExiste)
                 {
                     return Conflict(new
@@ -228,13 +232,19 @@ namespace ContratosAPI.Controllers
 
             // Verificar se existem contratos vinculados
             bool temContratos = await context.Contratos
+                .AsNoTracking()
                 .AnyAsync(c => c.TipoContraenteId == 2 &&
                                c.ContraenteId == id);
             if (temContratos)
             {
+                int totalContratos = await context.Contratos
+                    .AsNoTracking()
+                    .CountAsync(c => c.ContratanteId == id);
+                
                 return Conflict(new
                 {
-                    error = "Funcionário possui contratos vinculados"
+                    error = "Empresa possui contratos",
+                    message = $"Não é possível excluir. Existem {totalContratos} contrato(s) vinculado(s)."
                 });
             }
 
@@ -245,7 +255,7 @@ namespace ContratosAPI.Controllers
 
         private async Task<bool> FuncionarioExists(int id)
         {
-            return await context.Funcionarios.AnyAsync(f => f.Id == id);
+            return await context.Funcionarios.AsNoTracking().AnyAsync(f => f.Id == id);
         }
     }
 }
