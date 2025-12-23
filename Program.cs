@@ -1,3 +1,4 @@
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using ContratosAPI.Data;
@@ -26,6 +27,21 @@ builder.Services.AddSwaggerGen(gen =>
         Version = "v1",
         Description = "API para a gestão de empresas, funcionários e contratos"
     });
+    
+    // Incluir comentários XML
+    string xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    string xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    gen.IncludeXmlComments(xmlPath);
+});
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", builder =>
+    {
+        builder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
 });
 
 WebApplication app = builder.Build();
@@ -38,6 +54,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("AllowAll");
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
